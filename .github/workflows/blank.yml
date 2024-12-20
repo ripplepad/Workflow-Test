@@ -1,0 +1,25 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Hello Stage
+        run: echo "Hello, GitHub Actions!"
+
+      - name: Test Stage
+        run: |
+          python3 -c "assert 2 + 2 == 4" || exit 1
+          echo "Test passed: 2 + 2 = 4"
